@@ -14,7 +14,7 @@
 <meta property="og:description" content="今日做作业做了将近一天，晚上敲代码敲了一个，却出了BUG，目前还不知道问题出在哪。![BUG]&lt;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;SACZZJ&#x2F;photo&#x2F;img&#x2F;屏幕截图 2022-04-9 225753.png&gt;![日出]&lt;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;SACZZJ&#x2F;photo&#x2F;img&#x2F;屏幕截图 2022-04-9 225753">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-10T15:26:09.359Z">
-<meta property="article:modified_time" content="2022-04-10T15:26:09.885Z">
+<meta property="article:modified_time" content="2022-04-10T15:32:45.651Z">
 <meta property="article:tag" content="日常">
 <meta name="twitter:card" content="summary">
 
@@ -387,7 +387,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-10 23:26:09'>2022-04-10 23:26</time>
+            Created At : <time class="date" title='Updated At: 2022-04-10 23:32:45'>2022-04-10 23:26</time>
         
     </div>
     <div class="article-meta">
@@ -437,6 +437,72 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="今日做作业做了将近一天，晚上敲代码敲了一个，却出了BUG，目前还不知道问题出在哪。"><a href="#今日做作业做了将近一天，晚上敲代码敲了一个，却出了BUG，目前还不知道问题出在哪。" class="headerlink" title="今日做作业做了将近一天，晚上敲代码敲了一个，却出了BUG，目前还不知道问题出在哪。"></a>今日做作业做了将近一天，晚上敲代码敲了一个，却出了BUG，目前还不知道问题出在哪。</h3><p>![BUG]&lt;<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/SACZZJ/photo/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE">https://cdn.jsdelivr.net/gh/SACZZJ/photo/img/屏幕截图</a> 2022-04-9 225753.png&gt;<br>![日出]&lt;<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/SACZZJ/photo/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE">https://cdn.jsdelivr.net/gh/SACZZJ/photo/img/屏幕截图</a> 2022-04-9 225753.png&gt;</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;string.h&gt;
+struct grade &#123;
+    char name[20];
+    int num;
+&#125;;
+int main()
+&#123;
+    grade* ptd=NULL;
+    int N, i, j = 0;
+    char ch;
+    printf(&quot;要输入多少个数字：\n&quot;);
+    scanf_s(&quot;%d&quot;, &amp;N);
+    ptd = (grade*)malloc(N * sizeof(grade));
+    if (ptd == NULL)
+    &#123;
+        printf(&quot;error!\n&quot;);
+        exit(0);
+    &#125;
+
+
+
+    for (i = 0; i &lt;= N - 1; i++)
+    &#123;
+        printf(&quot;输入姓名：\n&quot;);
+        gets_s((ptd + i)-&gt;name);
+        printf(&quot;输入成绩：&quot;);
+        //do &#123;
+            //if (j != 0)printf(&quot;重新输入分数：&quot;);
+            scanf_s(&quot;%d&quot;, &amp;((ptd+i)-&gt;num));
+            //j++;
+        //&#125; while ((ptd + i)-&gt;num &lt; 0 || (ptd + i)-&gt;num&gt;100);
+    //    j = 0;
+    &#125;
+
+    
+    
+    
+    grade temp;
+    for (i = 0; i &lt;= N - 2; i++)
+        for (j = 0; j &lt;= N - 2 - i; j++)
+            if (((ptd + j + 1)-&gt;num) &lt; ((ptd + j + 1)-&gt;num))
+                temp = *(ptd + j), * (ptd + j) = *(ptd + j + 1), * (ptd + j + 1) = temp;
+    for (i = 0; i &lt;= N - 1; i++)
+        printf(&quot;%s:%d\t&quot;, (ptd + i)-&gt;name, (ptd + i)-&gt;num);
+    int first=0, last=N-1, mid, key;
+    printf(&quot;输入要查找的分数：&quot;);
+    scanf_s(&quot;%d&quot;, &amp;key);
+    mid = (first + last) / 2;
+    while (first&lt;last)
+    &#123;
+        if (key &gt; (ptd + mid)-&gt;num)
+            first = mid+1;
+        if (key &lt; (ptd + mid)-&gt;num)
+            last = mid-1;
+        if (key == (ptd + mid)-&gt;num)
+            printf(&quot;%s\t&quot;, (ptd + mid)-&gt;name);
+        //if (key != (ptd + first)-&gt;num)first++;
+        //if (key != (ptd + last)-&gt;num)last--;
+        mid = (first + last) / 2;
+    &#125;
+    free(ptd);
+    return 0;
+&#125;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
